@@ -11,3 +11,7 @@ fi
 
 alias conaws='cd ~/Develop/aws/ && ssh -i "ket_pair_aws.pem" ubuntu@52.91.195.76'
 alias ..='cd ..'
+
+if [ -f ~/.profile ]; then
+    source ~/.profile
+fi
