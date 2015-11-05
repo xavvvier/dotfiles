@@ -4,14 +4,11 @@ _localMachine="xmbp.local"
 
 if [[ $_machineName == $_localMachine ]]; then
     export PS1="[\W] 🍁  $ "
-    alias ll='ls -lGaf'
 else
     export PS1="[\W] ☁️  $ "
 fi
 
-alias conaws='cd ~/Develop/aws/ && ssh -i "ket_pair_aws.pem" ubuntu@52.91.195.76'
 alias ..='cd ..'
+alias ll='ls -laG'
+alias conaws='ssh -i "~/Develop/aws/ket_pair_aws.pem" ubuntu@52.91.195.76'
 
-if [ -f ~/.profile ]; then
-    source ~/.profile
-fi
