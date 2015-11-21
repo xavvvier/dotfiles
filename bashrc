@@ -10,5 +10,5 @@ fi
 
 alias ..='cd ..'
 alias ll='ls -laG'
-alias conaws='ssh -i ~/Develop/aws/ket_pair_aws.pem ubuntu@52.91.195.76'
+alias conaws='ssh -i ~/Develop/aws/ket_pair_aws.pem ubuntu@52.21.185.118'
 
