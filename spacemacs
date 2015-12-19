@@ -33,9 +33,9 @@ values."
      dash
      osx
      html
+     javascript
      org
      colors
-     ;;editorconfig
      perspectives
      shell
      )
@@ -51,6 +51,7 @@ values."
    ;; the list `dotspacemacs-configuration-layers'. (default t)
    dotspacemacs-delete-orphan-packages t))
 (defun dotspacemacs/user-config()
+  (setq powerline-default-separator 'alternate)
   (add-hook 'alchemist-mode-hook 'company-mode)
   ;; Make linums relative by default
   (global-linum-mode nil)
@@ -68,27 +69,11 @@ values."
   ;; This setq-default sexp is an exhaustive list of all the supported
   ;; spacemacs settings.
   (setq-default
-   ;; One of `vim', `emacs' or `hybrid'. Evil is always enabled but if the
-   ;; variable is `emacs' then the `holy-mode' is enabled at startup. `hybrid'
-   ;; uses emacs key bindings for vim's insert mode, but otherwise leaves evil
-   ;; unchanged. (default 'vim)
    dotspacemacs-editing-style 'vim
-   ;; If non nil output loading progress in `*Messages*' buffer. (default nil)
    dotspacemacs-verbose-loading nil
-   ;; Specify the startup banner. Default value is `official', it displays
-   ;; the official spacemacs logo. An integer value is the index of text
-   ;; banner, `random' chooses a random text banner in `core/banners'
-   ;; directory. A string value must be a path to an image format supported
-   ;; by your Emacs build.
-   ;; If the value is nil then no banner is displayed. (default 'official)
-   dotspacemacs-startup-banner 'official
-   ;; List of items to show in the startup buffer. If nil it is disabled.
-   ;; Possible values are: `recents' `bookmarks' `projects'.
-   ;; (default '(recents projects))
+   dotspacemacs-always-show-changelog nil
+   dotspacemacs-startup-banner nil
    dotspacemacs-startup-lists '(recents projects)
-   ;; List of themes, the first of the list is loaded when spacemacs starts.
-   ;; Press <SPC> T n to cycle to the next theme in the list (works great
-   ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
                          sanityinc-tomorrow-bright
                          sanityinc-tomorrow-night
@@ -97,7 +82,6 @@ values."
                          spacemacs-dark
                          spacemacs-light
                          zenburn)
-   ;; If non nil the cursor color matches the state color.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
@@ -175,7 +159,7 @@ values."
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
    dotspacemacs-inactive-transparency 90
    ;; If non nil unicode symbols are displayed in the mode line. (default t)
-   dotspacemacs-mode-line-unicode-symbols t
+   dotspacemacs-mode-line-unicode-symbols nil
    ;; If non nil smooth scrolling (native-scrolling) is enabled. Smooth
    ;; scrolling overrides the default behavior of Emacs which recenters the
    ;; point when it reaches the top or bottom of the screen. (default t)
@@ -201,16 +185,14 @@ values."
    ))
 
 (defun dotspacemacs/user-init ()
-  "Initialization function for user code.
+    (setq-default
+    ;; Evil
+        evil-shift-round nil
+    )
+"Initialization function for user code.
 It is called immediately after `dotspacemacs/init'.  You are free to put any
 user code."
   )
-
-;; ;; (defun dotspacemacs/user-config ()
-;;   "Configuration function for user code.
-;;  This function is called at the very end of Spacemacs initialization after
-;; layers configuration. You are free to put any user code."
-;; ;; )
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
