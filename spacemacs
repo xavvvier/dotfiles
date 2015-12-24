@@ -59,6 +59,10 @@ values."
   ;; Make _ part of a word in alchemist-mode
   (add-hook 'alchemist-mode-hook
     (lambda () (modify-syntax-entry ?_ "w")))
+  (define-key evil-normal-state-map "B" 'beginning-of-line-text)
+  (define-key evil-normal-state-map "W" "$")
+  (define-key evil-normal-state-map "E" "$")
+
 )
 (defun dotspacemacs/init ()
   "Initialization function.
