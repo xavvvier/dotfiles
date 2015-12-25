@@ -68,6 +68,10 @@ nnoremap <leader>p :bp<CR>
 nnoremap <leader>d :bd<CR>
 nnoremap <leader>t :NERDTreeToggle<CR>
 nnoremap <leader>f :NERDTreeFind<CR>
+nmap W $
+nmap E $
+nmap B ^
+nmap <space>fs :w<CR>
 "" Abbreviations
 iabbrev adn and
 iabbrev waht what
