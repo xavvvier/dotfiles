@@ -9,7 +9,7 @@ set relativenumber
 set number
 "Let me erase with bakcspace at the end of the line
 set backspace=indent,eol,start 
-"Let me jump betweent unsaved buffers
+"Let me jump between unsaved buffers
 set hidden
 
 highlight clear SignColumn
@@ -21,9 +21,6 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set softtabstop=4
-
-" Put yanks in the so's clipboard
-set clipboard=unnamed
     
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -45,6 +42,8 @@ Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'szw/vim-maximizer'
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
@@ -72,11 +71,17 @@ nmap W $
 nmap E $
 nmap B ^
 nmap <space>fs :w<CR>
+"Fast window navigation
+nnoremap <C-j> <C-W><C-j>
+nnoremap <C-k> <C-W><C-k>
+nnoremap <C-l> <C-W><C-l>
+nnoremap <C-h> <C-W><C-h>
+"Window maximizer
+nnoremap <leader>m :MaximizerToggle<CR>
+
 "" Abbreviations
 iabbrev adn and
 iabbrev waht what
-nnoremap H 00
-nnoremap L $
 
 " Arrow keys
 nnoremap <left> <nop>
