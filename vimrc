@@ -35,19 +35,25 @@ Plugin 'jelera/vim-javascript-syntax'
 Plugin 'tpope/vim-git'
 Plugin 'tpope/vim-markdown'
 Plugin 'vim-ruby/vim-ruby'
-Plugin 'elixir-lang/vim-elixir'
 Plugin 'scrooloose/syntastic'
+Plugin 'ervandew/supertab'
+"Elixir
+Plugin 'slashmili/alchemist.vim'
+Plugin 'elixir-lang/vim-elixir'
 "Snipmate
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
+Plugin 'szw/vim-maximizer' "Maximize window with <leader>m
+Plugin 'simeji/winresizer' "Easy window resizing with <C-e> hjkl
+"typescript
+Plugin 'Quramy/vim-js-pretty-template'
 Plugin 'leafgarland/typescript-vim'
-Plugin 'szw/vim-maximizer'
+"Plugin 'Quramy/tsuquyomi'
 call vundle#end()            " required
 filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
+
 "
 " Brief help
 " :PluginList       - lists configured plugins
@@ -57,7 +63,15 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
-"
+
+" omni completion
+filetype plugin on
+set omnifunc=syntaxcomplete#Complete
+
+"supertab 
+let g:SuperTabDefaultCompletionType = "context"
+
+
 nnoremap <leader><leader> <C-^>
 nnoremap <space> :
 "map space space to save file
@@ -78,6 +92,9 @@ nnoremap <C-l> <C-W><C-l>
 nnoremap <C-h> <C-W><C-h>
 "Window maximizer
 nnoremap <leader>m :MaximizerToggle<CR>
+"Window Resizer settings
+let g:winresizer_vert_resize = 5
+let g:winresizer_horiz_resize = 1
 
 "" Abbreviations
 iabbrev adn and
@@ -98,13 +115,27 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
+"Syntastic
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 "let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_html_tidy_ignore_errors = [
+        \ "<svg> is not recognized!",
+        \ "discarding unexpected <svg>",
+        \ "discarding unexpected </svg>",
+        \]
 "let g:syntastic_elixir_checkers = ['elixir']
-"let g:syntastic_enable_elixir_checker = 1
+let g:syntastic_enable_elixir_checker = 1
+
+"Typescript settings
+let g:typescript_compiler_binary = 'tsc'
+let g:typescript_compiler_options = ''
+autocmd QuickFixCmdPost [^l]* nested cwindow
+autocmd QuickFixCmdPost l* nested lwindow
+autocmd FileType typescript JsPreTmpl html
+autocmd FileType typescript syn clear foldBraces
 
 " Airline settings
 " The font used for powerline fancy symbols is InputMono 11pt
