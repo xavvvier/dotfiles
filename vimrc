@@ -26,16 +26,19 @@ set softtabstop=4
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'bling/vim-airline'
-Plugin 'kien/ctrlp.vim'
+Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-surround'
+Plugin 'scrooloose/syntastic'
+"Ctrlp -> seach files hitting C-p
+Plugin 'ctrlpvim/ctrlp.vim'
+"git
 Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-git'
+"Javascript
 Plugin 'pangloss/vim-javascript'
 Plugin 'jelera/vim-javascript-syntax'
-Plugin 'tpope/vim-git'
-Plugin 'tpope/vim-markdown'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'scrooloose/syntastic'
+"Omnicompletion with tab
 Plugin 'ervandew/supertab'
 "Elixir
 Plugin 'slashmili/alchemist.vim'
@@ -45,6 +48,7 @@ Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
+"Window maximize and resize
 Plugin 'szw/vim-maximizer' "Maximize window with <leader>m
 Plugin 'simeji/winresizer' "Easy window resizing with <C-e> hjkl
 "typescript
@@ -68,10 +72,14 @@ filetype plugin indent on    " required
 filetype plugin on
 set omnifunc=syntaxcomplete#Complete
 
+"vim/ctrlp ignore files
+set wildignore+=*/tmp/*,*.beam
+
 "supertab 
-let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabDefaultCompletionType = "<c-n>"
+let g:SuperTabContextDefaultCompletionType = "<c-n>"
 
-
+"Mappings
 nnoremap <leader><leader> <C-^>
 nnoremap <space> :
 "map space space to save file
