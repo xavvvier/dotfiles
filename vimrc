@@ -68,6 +68,8 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
+"Close NERDTree on open
+let g:NERDTreeQuitOnOpen = 1
 " omni completion
 filetype plugin on
 set omnifunc=syntaxcomplete#Complete
@@ -107,6 +109,7 @@ let g:winresizer_horiz_resize = 1
 "" Abbreviations
 iabbrev adn and
 iabbrev waht what
+:autocmd FileType elixir :iabbrev po \|>
 
 " Arrow keys
 nnoremap <left> <nop>
