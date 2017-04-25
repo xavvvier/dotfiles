@@ -54,6 +54,7 @@ Plugin 'simeji/winresizer' "Easy window resizing with <C-e> hjkl
 "typescript
 Plugin 'Quramy/vim-js-pretty-template'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'altercation/vim-colors-solarized'
 "Plugin 'Quramy/tsuquyomi'
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -68,8 +69,15 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
+"NERDTree
 "Close NERDTree on open
 let g:NERDTreeQuitOnOpen = 1
+let NERDTreeIgnore = ['\.beam$']
+
+"User solarized dark
+colorscheme solarized
+set background=dark
+
 " omni completion
 filetype plugin on
 set omnifunc=syntaxcomplete#Complete
@@ -174,4 +182,14 @@ autocmd BufRead,BufNewFile *.js set ft=javascript syntax=javascript
 autocmd BufRead,BufNewFile *.json set ft=json syntax=javascript
 autocmd BufRead,BufNewFile *.eex set ft=html.eelixir
 
-
+"window settings
+if has('gui_running') && has('win32')
+    set guifont=Consolas:h12
+    "remove gui toolbars and menus
+    set guioptions-=m
+    set guioptions-=T
+    set guioptions-=r
+    "remove airline fancy arrows
+    let g:airline_left_sep=''
+    let g:airline_right_sep=''
+endif
