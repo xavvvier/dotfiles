@@ -21,6 +21,7 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set softtabstop=4
+
     
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -29,12 +30,14 @@ Plugin 'bling/vim-airline'
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-sensible'
 Plugin 'scrooloose/syntastic'
 "Ctrlp -> seach files hitting C-p
 Plugin 'ctrlpvim/ctrlp.vim'
 "git
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-git'
+Plugin 'tpope/vim-fugitive'
 "Javascript
 Plugin 'pangloss/vim-javascript'
 Plugin 'jelera/vim-javascript-syntax'
@@ -55,7 +58,7 @@ Plugin 'simeji/winresizer' "Easy window resizing with <C-e> hjkl
 Plugin 'Quramy/vim-js-pretty-template'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'altercation/vim-colors-solarized'
-"Plugin 'Quramy/tsuquyomi'
+Plugin 'Quramy/tsuquyomi'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -90,19 +93,22 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 let g:SuperTabContextDefaultCompletionType = "<c-n>"
 
 "Mappings
+nnoremap <leader>v :vsp $MYVIMRC<cr>
+nnoremap <leader>sv :so $MYVIMRC<cr>
+
+nnoremap 0p "0p
 nnoremap <leader><leader> <C-^>
 nnoremap <space> :
 "map space space to save file
 nnoremap <space><space> :w<CR>
 nnoremap <leader>n :bn<CR>
 nnoremap <leader>p :bp<CR>
-nnoremap <leader>d :bd<CR>
+nnoremap <leader>d :bn \| bd #<CR>
 nnoremap <leader>t :NERDTreeToggle<CR>
 nnoremap <leader>f :NERDTreeFind<CR>
 nmap W $
 nmap E $
 nmap B ^
-nmap <space>fs :w<CR>
 "Fast window navigation
 nnoremap <C-j> <C-W><C-j>
 nnoremap <C-k> <C-W><C-k>
@@ -177,7 +183,7 @@ autocmd BufRead,BufNewFile *.test set filetype=php
 autocmd BufRead,BufNewFile *.inc set filetype=php
 autocmd BufRead,BufNewFile *.profile set filetype=php
 autocmd BufRead,BufNewFile *.view set filetype=php
-autocmd BufNewFile,BufRead *.less set filetype=less
+autocmd BufRead,BufNewFile *.less set filetype=less
 autocmd BufRead,BufNewFile *.js set ft=javascript syntax=javascript
 autocmd BufRead,BufNewFile *.json set ft=json syntax=javascript
 autocmd BufRead,BufNewFile *.eex set ft=html.eelixir
@@ -193,3 +199,10 @@ if has('gui_running') && has('win32')
     let g:airline_left_sep=''
     let g:airline_right_sep=''
 endif
+
+"Comment and uncomment with gc gC
+autocmd FileType vim nnoremap gc ^i"<esc>
+autocmd FileType elixir nnoremap gc ^i#<esc>
+autocmd FileType elixir vnoremap gc :normal ^i#<cr>
+autocmd FileType vim,elixir nnoremap gC ^x
+autocmd FileType vim,elixir vnoremap gC :normal ^x<cr>
