@@ -21,8 +21,36 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set softtabstop=4
+set scrolloff=5
 
-    
+"NERDTree
+"Close NERDTree on open
+let g:NERDTreeQuitOnOpen = 1
+let NERDTreeIgnore = ['\.beam$']
+
+"User solarized dark
+set background=dark
+
+" Omni completion
+filetype plugin on
+set omnifunc=syntaxcomplete#Complete
+
+"vim/ctrlp ignore files
+set wildignore+=*/tmp/*,*.beam
+
+"Supertab 
+let g:SuperTabDefaultCompletionType = "<c-n>"
+let g:SuperTabContextDefaultCompletionType = "<c-n>"
+
+"Window Resizer settings
+let g:winresizer_vert_resize = 5
+let g:winresizer_horiz_resize = 1
+
+"" Abbreviations
+iabbrev adn and
+iabbrev waht what
+
+"Plugins {{{
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -61,44 +89,16 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'Quramy/tsuquyomi'
 call vundle#end()            " required
 filetype plugin indent on    " required
+"}}}
 
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-
-"NERDTree
-"Close NERDTree on open
-let g:NERDTreeQuitOnOpen = 1
-let NERDTreeIgnore = ['\.beam$']
-
-"User solarized dark
-colorscheme solarized
-set background=dark
-
-" omni completion
-filetype plugin on
-set omnifunc=syntaxcomplete#Complete
-
-"vim/ctrlp ignore files
-set wildignore+=*/tmp/*,*.beam
-
-"supertab 
-let g:SuperTabDefaultCompletionType = "<c-n>"
-let g:SuperTabContextDefaultCompletionType = "<c-n>"
-
-"Mappings
+" Mappings -------- {{{
 nnoremap <leader>v :vsp $MYVIMRC<cr>
 nnoremap <leader>sv :so $MYVIMRC<cr>
 
 nnoremap 0p "0p
 nnoremap <leader><leader> <C-^>
 nnoremap <space> :
+nnoremap q<space> q:
 "map space space to save file
 nnoremap <space><space> :w<CR>
 nnoremap <leader>n :bn<CR>
@@ -116,14 +116,6 @@ nnoremap <C-l> <C-W><C-l>
 nnoremap <C-h> <C-W><C-h>
 "Window maximizer
 nnoremap <leader>m :MaximizerToggle<CR>
-"Window Resizer settings
-let g:winresizer_vert_resize = 5
-let g:winresizer_horiz_resize = 1
-
-"" Abbreviations
-iabbrev adn and
-iabbrev waht what
-:autocmd FileType elixir :iabbrev po \|>
 
 " Arrow keys
 nnoremap <left> <nop>
@@ -135,12 +127,9 @@ inoremap <left> <nop>
 inoremap <right> <nop>
 inoremap <up> <nop>
 inoremap <down> <nop>
+"}}}
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-"Syntastic
+"Syntastic ------ {{{
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 "let g:syntastic_check_on_open = 1
@@ -154,26 +143,34 @@ let g:syntastic_html_tidy_ignore_errors = [
 "let g:syntastic_elixir_checkers = ['elixir']
 let g:syntastic_enable_elixir_checker = 1
 
-"Typescript settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+"}}}
+
+"Typescript settings {{{
 let g:typescript_compiler_binary = 'tsc'
 let g:typescript_compiler_options = ''
 autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost l* nested lwindow
 autocmd FileType typescript JsPreTmpl html
 autocmd FileType typescript syn clear foldBraces
+"}}}
 
-" Airline settings
+" Airline settings {{{
 " The font used for powerline fancy symbols is InputMono 11pt
 " http://input.fontbureau.com/download/
 " For terminal.app use the theme in:
 " https://github.com/tomislav/osx-terminal.app-colors-solarized
 let g:airline#extensions#tabline#enabled =1
 let g:airline_powerline_fonts=1
-"Show always te status line
+"Show always the status line
 set laststatus=2
 "Avoid delay when switching from insert mode to normal
 set ttimeoutlen=50
+"}}}
 
+"Autocmd commands {{{
 autocmd BufRead,BufNewFile *.fdoc set filetype=yaml
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 autocmd BufRead,BufNewFile *.txt set filetype=markdown
@@ -187,22 +184,47 @@ autocmd BufRead,BufNewFile *.less set filetype=less
 autocmd BufRead,BufNewFile *.js set ft=javascript syntax=javascript
 autocmd BufRead,BufNewFile *.json set ft=json syntax=javascript
 autocmd BufRead,BufNewFile *.eex set ft=html.eelixir
+autocmd FileType elixir :iabbrev po \|>
+"Comment and uncomment with gc gC
+augroup comments
+    autocmd!
+    autocmd FileType vim nnoremap gc ^i"<esc>
+    autocmd FileType elixir nnoremap gc ^i#<esc>
+    autocmd FileType elixir vnoremap gc :normal ^i#<cr>
+    autocmd FileType vim,elixir nnoremap gC ^x
+    autocmd FileType vim,elixir vnoremap gC :normal ^x<cr>
+augroup END
+"}}}
 
-"window settings
+"Windows settings {{{
+if has('win32')
+    colorscheme solarized
+endif
 if has('gui_running') && has('win32')
     set guifont=Consolas:h12
     "remove gui toolbars and menus
     set guioptions-=m
     set guioptions-=T
     set guioptions-=r
+    set guioptions-=L
     "remove airline fancy arrows
     let g:airline_left_sep=''
     let g:airline_right_sep=''
+    set background=dark
 endif
+"}}}
 
-"Comment and uncomment with gc gC
-autocmd FileType vim nnoremap gc ^i"<esc>
-autocmd FileType elixir nnoremap gc ^i#<esc>
-autocmd FileType elixir vnoremap gc :normal ^i#<cr>
-autocmd FileType vim,elixir nnoremap gC ^x
-autocmd FileType vim,elixir vnoremap gC :normal ^x<cr>
+" Vimscript file settings ------------------- {{{
+augroup filetype_vim
+    autocmd!
+    autocmd FileType vim set foldmethod=marker
+augroup END
+" }}}
+
+"To link this file in windows:
+"create .vimrc with the following content
+"let vimFile = $userprofile . "\\dotfiles\\vimrc"
+"exec "source " . vimFile
+"exec "nnoremap <leader>v :vsp " . vimFile . "<cr>"
+"exec "nnoremap <leader>sv :source " . vimFile . "<cr>"
+
