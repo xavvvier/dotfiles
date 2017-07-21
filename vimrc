@@ -22,6 +22,7 @@ set shiftwidth=4
 set expandtab
 set softtabstop=4
 set scrolloff=5
+set ignorecase
 
 "NERDTree
 "Close NERDTree on open
@@ -222,9 +223,6 @@ augroup END
 " }}}
 
 "To link this file in windows:
-"create .vimrc with the following content
-"let vimFile = $userprofile . "\\dotfiles\\vimrc"
-"exec "source " . vimFile
-"exec "nnoremap <leader>v :vsp " . vimFile . "<cr>"
-"exec "nnoremap <leader>sv :source " . vimFile . "<cr>"
+"run `mklink /H ".vimrc" "dotfiles/vimrc`
+"
 
