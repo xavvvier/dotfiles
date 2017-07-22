@@ -1,7 +1,6 @@
 set nocompatible
 syntax enable
 filetype off
-let mapleader = ','
 
 set t_Co=256
 set termencoding=utf-8
@@ -73,7 +72,7 @@ Plugin 'jelera/vim-javascript-syntax'
 "Omnicompletion with tab
 Plugin 'ervandew/supertab'
 "Elixir
-Plugin 'slashmili/alchemist.vim'
+Plugin 'slashmili/Alchemist.vim'
 Plugin 'elixir-lang/vim-elixir'
 "Snipmate
 Plugin 'MarcWeber/vim-addon-mw-utils'
@@ -93,6 +92,7 @@ filetype plugin indent on    " required
 "}}}
 
 " Mappings -------- {{{
+let mapleader = ','
 nnoremap <leader>v :vsp $MYVIMRC<cr>
 nnoremap <leader>sv :so $MYVIMRC<cr>
 
@@ -184,7 +184,8 @@ autocmd BufRead,BufNewFile *.view set filetype=php
 autocmd BufRead,BufNewFile *.less set filetype=less
 autocmd BufRead,BufNewFile *.js set ft=javascript syntax=javascript
 autocmd BufRead,BufNewFile *.json set ft=json syntax=javascript
-autocmd BufRead,BufNewFile *.eex set ft=html.eelixir
+autocmd BufRead,BufNewFile *.ex,*.exs set ft=elixir
+autocmd BufRead,BufNewFile *.eex set ft=html.elixir
 autocmd FileType elixir :iabbrev po \|>
 "Comment and uncomment with gc gC
 augroup comments
@@ -198,9 +199,7 @@ augroup END
 "}}}
 
 "Windows settings {{{
-if has('win32')
-    colorscheme solarized
-endif
+colorscheme solarized
 if has('gui_running') && has('win32')
     set guifont=Consolas:h12
     "remove gui toolbars and menus
