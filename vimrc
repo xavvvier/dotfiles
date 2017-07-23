@@ -39,8 +39,8 @@ set omnifunc=syntaxcomplete#Complete
 set wildignore+=*/tmp/*,*.beam
 
 "Supertab 
-let g:SuperTabDefaultCompletionType = "<c-n>"
-let g:SuperTabContextDefaultCompletionType = "<c-n>"
+let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
+"let g:SuperTabContextDefaultCompletionType = "context"
 
 "Window Resizer settings
 let g:winresizer_vert_resize = 5
