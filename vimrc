@@ -83,10 +83,12 @@ Plugin 'honza/vim-snippets'
 Plugin 'szw/vim-maximizer' "Maximize window with <leader>m
 Plugin 'simeji/winresizer' "Easy window resizing with <C-e> hjkl
 "typescript
+"follow instructions on vimproc.vim github page
+Plugin 'Shougo/vimproc.vim'
+Plugin 'Quramy/tsuquyomi'
 Plugin 'Quramy/vim-js-pretty-template'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'Quramy/tsuquyomi'
 call vundle#end()            " required
 filetype plugin indent on    " required
 "}}}
@@ -154,6 +156,7 @@ let g:typescript_compiler_binary = 'tsc'
 let g:typescript_compiler_options = ''
 autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost l* nested lwindow
+autocmd FileType typescript setl omnifunc=tsuquyomi#complete
 autocmd FileType typescript JsPreTmpl html
 autocmd FileType typescript syn clear foldBraces
 "}}}
@@ -186,6 +189,7 @@ autocmd BufRead,BufNewFile *.js set ft=javascript syntax=javascript
 autocmd BufRead,BufNewFile *.json set ft=json syntax=javascript
 autocmd BufRead,BufNewFile *.ex,*.exs set ft=elixir
 autocmd BufRead,BufNewFile *.eex set ft=html.elixir
+autocmd BufRead,BufNewFile *.ts set ft=typescript
 autocmd FileType elixir :iabbrev po \|>
 "Comment and uncomment with gc gC
 augroup comments
