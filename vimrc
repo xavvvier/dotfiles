@@ -201,15 +201,23 @@ augroup END
 "Windows settings {{{
 colorscheme solarized
 if has('gui_running') && has('win32')
-    set guifont=Consolas:h12
+    set guifont=Source_Code_Pro_Light:h12:cANSI:qDRAFT
     "remove gui toolbars and menus
     set guioptions-=m
     set guioptions-=T
     set guioptions-=r
     set guioptions-=L
-    "remove airline fancy arrows
-    let g:airline_left_sep=''
-    let g:airline_right_sep=''
+    "Fix powerline symbols
+    if !exists('g:airline_symbols')
+      let g:airline_symbols = {}
+    endif
+    let g:airline_left_sep = ''
+    let g:airline_left_alt_sep = ''
+    let g:airline_right_sep = ''
+    let g:airline_right_alt_sep = ''
+    let g:airline_symbols.branch = ''
+    let g:airline_symbols.readonly = ''
+    let g:airline_symbols.linenr = ''
     set background=dark
 endif
 "}}}
