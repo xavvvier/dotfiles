@@ -50,6 +50,8 @@ let g:winresizer_horiz_resize = 1
 iabbrev adn and
 iabbrev waht what
 
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+
 "Plugins {{{
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -59,6 +61,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-sensible'
+Plugin 'tpope/vim-unimpaired'
 Plugin 'scrooloose/syntastic'
 "Ctrlp -> seach files hitting C-p
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -106,7 +109,7 @@ nnoremap q<space> q:
 nnoremap <space><space> :w<CR>
 nnoremap <leader>n :bn<CR>
 nnoremap <leader>p :bp<CR>
-nnoremap <leader>d :bn \| bd #<CR>
+nnoremap <leader>d :bp \| bd #<CR>
 nnoremap <leader>t :NERDTreeToggle<CR>
 nnoremap <leader>f :NERDTreeFind<CR>
 nmap W $
@@ -157,6 +160,7 @@ let g:typescript_compiler_options = ''
 autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost l* nested lwindow
 autocmd FileType typescript setl omnifunc=tsuquyomi#complete
+autocmd FileType typescript nmap <buffer> <Leader>T : <C-u>echo tsuquyomi#hint()<CR>
 autocmd FileType typescript JsPreTmpl html
 autocmd FileType typescript syn clear foldBraces
 "}}}
@@ -194,18 +198,24 @@ autocmd FileType elixir :iabbrev po \|>
 "Comment and uncomment with gc gC
 augroup comments
     autocmd!
+    "TODO: add mark to return to the original position
+    "TODO: when remove comment, fix indentation
     autocmd FileType vim nnoremap gc ^i"<esc>
     autocmd FileType elixir nnoremap gc ^i#<esc>
-    autocmd FileType elixir vnoremap gc :normal ^i#<cr>
+    autocmd FileType elixir vnoremap gc :normal! ^i#<cr>
     autocmd FileType vim,elixir nnoremap gC ^x
-    autocmd FileType vim,elixir vnoremap gC :normal ^x<cr>
+    autocmd FileType vim,elixir vnoremap gC :normal! ^x<cr>
+    autocmd FileType javascript,typescript nnoremap gc ^i//<esc>
+    autocmd FileType javascript,typescript vnoremap gc :normal! ^i//<esc>
+    autocmd FileType javascript,typescript nnoremap gC ^xx<esc>
+    autocmd FileType javascript,typescript vnoremap gC :normal! ^xx<esc>
 augroup END
 "}}}
 
 "Windows settings {{{
 colorscheme solarized
 if has('gui_running') && has('win32')
-    set guifont=Source_Code_Pro_Light:h12:cANSI:qDRAFT
+    set guifont=Source_Code_Pro_for_powerline:h11:cANSI:qDRAFT
     "remove gui toolbars and menus
     set guioptions-=m
     set guioptions-=T
