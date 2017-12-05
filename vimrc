@@ -50,7 +50,7 @@ let g:winresizer_horiz_resize = 1
 iabbrev adn and
 iabbrev waht what
 
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|packages'
 
 "Plugins {{{
 " set the runtime path to include Vundle and initialize
@@ -92,6 +92,8 @@ Plugin 'Quramy/tsuquyomi'
 Plugin 'Quramy/vim-js-pretty-template'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'altercation/vim-colors-solarized'
+"wakatime
+Plugin 'wakatime/vim-wakatime'
 call vundle#end()            " required
 filetype plugin indent on    " required
 "}}}
