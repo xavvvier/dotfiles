@@ -50,7 +50,7 @@ let g:winresizer_horiz_resize = 1
 iabbrev adn and
 iabbrev waht what
 
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|packages'
 
 "Plugins {{{
 " set the runtime path to include Vundle and initialize
@@ -94,6 +94,8 @@ Plugin 'leafgarland/typescript-vim'
 Plugin 'altercation/vim-colors-solarized'
 "vim-tmux navigation
 Plugin 'christoomey/vim-tmux-navigator'
+"wakatime
+Plugin 'wakatime/vim-wakatime'
 call vundle#end()            " required
 filetype plugin indent on    " required
 "}}}
@@ -114,8 +116,8 @@ nnoremap <leader>p :bp<CR>
 nnoremap <leader>d :bp \| bd #<CR>
 nnoremap <leader>t :NERDTreeToggle<CR>
 nnoremap <leader>f :NERDTreeFind<CR>
-nmap W $
-nmap E $
+nmap n nzz
+nmap N Nzz
 nmap B ^
 "Fast window navigation
 nnoremap <C-j> <C-W><C-j>
