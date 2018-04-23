@@ -92,6 +92,8 @@ Plugin 'Quramy/tsuquyomi'
 Plugin 'Quramy/vim-js-pretty-template'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'altercation/vim-colors-solarized'
+"vim-tmux navigation
+Plugin 'christoomey/vim-tmux-navigator'
 call vundle#end()            " required
 filetype plugin indent on    " required
 "}}}
@@ -171,7 +173,7 @@ autocmd FileType typescript syn clear foldBraces
 " For terminal.app use the theme in:
 " https://github.com/tomislav/osx-terminal.app-colors-solarized
 let g:airline#extensions#tabline#enabled =1
-let g:airline_powerline_fonts=1
+let g:airline_powerline_fonts=0
 "Show always the status line
 set laststatus=2
 "Avoid delay when switching from insert mode to normal
@@ -225,10 +227,10 @@ if has('gui_running') && has('win32')
     if !exists('g:airline_symbols')
       let g:airline_symbols = {}
     endif
-    let g:airline_left_sep = ''
-    let g:airline_left_alt_sep = ''
-    let g:airline_right_sep = ''
-    let g:airline_right_alt_sep = ''
+    let g:airline_left_sep = '|'
+    let g:airline_left_alt_sep = '|'
+    let g:airline_right_sep = '|'
+    let g:airline_right_alt_sep = '|'
     let g:airline_symbols.branch = ''
     let g:airline_symbols.readonly = ''
     let g:airline_symbols.linenr = ''
