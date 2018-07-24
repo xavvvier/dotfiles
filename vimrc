@@ -119,6 +119,7 @@ nnoremap <leader>f :NERDTreeFind<CR>
 nmap n nzz
 nmap N Nzz
 nmap B ^
+nmap zp (zf}
 "Fast window navigation
 nnoremap <C-j> <C-W><C-j>
 nnoremap <C-k> <C-W><C-k>
