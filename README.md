@@ -4,7 +4,7 @@ Configuration files based on [Michael Smalley](http://blog.smalleycreative.com/t
 
 Includes bash_profile, vimrc, tmux.conf and spacemacs
 
-# Install
+# Install *Nix
 
 Run these commands in the shell
 
@@ -15,3 +15,11 @@ chmod +x makesymlinks.sh
 ./makesymlinks.sh
 ```
 
+# Install On Windows
+
+```sh
+Install curl
+cd %USERPROFILE%
+git clone https://github.com/VundleVim/Vundle.vim.git %USERPROFILE%/.vim/bundle/Vundle.vim
+mklink /H ".vimrc" "dotfiles/vimrc"
+```
