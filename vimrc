@@ -4,24 +4,23 @@ filetype off
 
 set t_Co=256
 set termencoding=utf-8
-set relativenumber
-set number
+set nonumber
 "Let me erase with bakcspace at the end of the line
 set backspace=indent,eol,start 
 "Let me jump between unsaved buffers
 set hidden
 
 highlight clear SignColumn
-set cursorcolumn
-highlight CursorColumn ctermbg=Black
+highlight CursorLine cterm=NONE ctermbg=black guibg=#101520
+set nocursorcolumn
 set cursorline
-hi CursorLine cterm=NONE ctermbg=black guibg=#101520
 set tabstop=4
 set shiftwidth=4
 set expandtab
 set softtabstop=4
 set scrolloff=5
 set ignorecase
+set nowrap
 
 "NERDTree
 "Close NERDTree on open
@@ -266,3 +265,4 @@ set foldtext=NeatFoldText()
 "
 
 set mouse=a
+hi VertSplit ctermbg=none  guifg=black guibg=black cterm=NONE gui=NONE
