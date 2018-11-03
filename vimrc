@@ -171,10 +171,8 @@ autocmd FileType typescript syn clear foldBraces
 "}}}
 
 " Airline settings {{{
-" The font used for powerline fancy symbols is InputMono 11pt
+" Font used in terminal is InputMono 12pt Light
 " http://input.fontbureau.com/download/
-" For terminal.app use the theme in:
-" https://github.com/tomislav/osx-terminal.app-colors-solarized
 let g:airline#extensions#tabline#enabled =1
 let g:airline_powerline_fonts=0
 "Show always the status line
@@ -267,3 +265,4 @@ set foldtext=NeatFoldText()
 "run `mklink /H ".vimrc" "dotfiles/vimrc`
 "
 
+set mouse=a

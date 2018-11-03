@@ -10,5 +10,3 @@ fi
 
 alias ..='cd ..'
 alias ll='ls -laG'
-alias conaws='ssh -i ~/Develop/aws/ket_pair_aws.pem ubuntu@ec2-52-21-185-118.compute-1.amazonaws.com'
-alias emacs='emacs -nw'
