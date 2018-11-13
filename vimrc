@@ -4,24 +4,23 @@ filetype off
 
 set t_Co=256
 set termencoding=utf-8
-set relativenumber
-set number
+set nonumber
 "Let me erase with bakcspace at the end of the line
 set backspace=indent,eol,start 
 "Let me jump between unsaved buffers
 set hidden
 
 highlight clear SignColumn
-set cursorcolumn
-highlight CursorColumn ctermbg=Black
+highlight CursorLine cterm=NONE ctermbg=black guibg=#101520
+set nocursorcolumn
 set cursorline
-hi CursorLine cterm=NONE ctermbg=black guibg=#101520
 set tabstop=4
 set shiftwidth=4
 set expandtab
 set softtabstop=4
 set scrolloff=5
 set ignorecase
+set nowrap
 
 "NERDTree
 "Close NERDTree on open
@@ -171,10 +170,8 @@ autocmd FileType typescript syn clear foldBraces
 "}}}
 
 " Airline settings {{{
-" The font used for powerline fancy symbols is InputMono 11pt
+" Font used in terminal is InputMono 12pt Light
 " http://input.fontbureau.com/download/
-" For terminal.app use the theme in:
-" https://github.com/tomislav/osx-terminal.app-colors-solarized
 let g:airline#extensions#tabline#enabled =1
 let g:airline_powerline_fonts=0
 "Show always the status line
@@ -267,3 +264,5 @@ set foldtext=NeatFoldText()
 "run `mklink /H ".vimrc" "dotfiles/vimrc`
 "
 
+set mouse=a
+hi VertSplit ctermbg=none  guifg=black guibg=black cterm=NONE gui=NONE
