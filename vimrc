@@ -267,10 +267,11 @@ hi VertSplit ctermbg=none  guifg=black guibg=black cterm=NONE gui=NONE
 set hlsearch
 hi Search ctermbg=gray ctermfg=17
 
-"starts deoplete at startup
-let g:deoplete#enable_at_startup = 1
-
-"set neovim configuration file in .config/nvim/init.vim
-"set runtimepath^=~/.vim runtimepath+=~/.vim/after
-"let &packpath = &runtimepath
-"source ~/.vimrc
+if has('nvim')
+    "starts deoplete at startup
+    let g:deoplete#enable_at_startup = 1
+    "set neovim configuration file in .config/nvim/init.vim
+    "set runtimepath^=~/.vim runtimepath+=~/.vim/after
+    "let &packpath = &runtimepath
+    "source ~/.vimrc
+endif
