@@ -30,9 +30,7 @@ let NERDTreeIgnore = ['\.beam$']
 "User solarized dark
 set background=dark
 
-" Omni completion
 filetype plugin on
-set omnifunc=syntaxcomplete#Complete
 
 "vim/ctrlp ignore files
 set wildignore+=*/tmp/*,*.beam
@@ -55,13 +53,13 @@ let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|packages'
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+Plugin 'Shougo/deoplete.nvim'
 Plugin 'bling/vim-airline'
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-unimpaired'
-Plugin 'scrooloose/syntastic'
 "Ctrlp -> seach files hitting C-p
 Plugin 'ctrlpvim/ctrlp.vim'
 "git
@@ -95,6 +93,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'christoomey/vim-tmux-navigator'
 "wakatime
 Plugin 'wakatime/vim-wakatime'
+Plugin 'w0rp/ale'
 call vundle#end()            " required
 filetype plugin indent on    " required
 "}}}
@@ -163,7 +162,6 @@ let g:typescript_compiler_binary = 'tsc'
 let g:typescript_compiler_options = ''
 autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost l* nested lwindow
-autocmd FileType typescript setl omnifunc=tsuquyomi#complete
 autocmd FileType typescript nmap <buffer> <Leader>T : <C-u>echo tsuquyomi#hint()<CR>
 autocmd FileType typescript JsPreTmpl html
 autocmd FileType typescript syn clear foldBraces
@@ -266,3 +264,13 @@ set foldtext=NeatFoldText()
 
 set mouse=a
 hi VertSplit ctermbg=none  guifg=black guibg=black cterm=NONE gui=NONE
+set hlsearch
+hi Search ctermbg=gray ctermfg=17
+
+"starts deoplete at startup
+let g:deoplete#enable_at_startup = 1
+
+"set neovim configuration file in .config/nvim/init.vim
+"set runtimepath^=~/.vim runtimepath+=~/.vim/after
+"let &packpath = &runtimepath
+"source ~/.vimrc
