@@ -215,7 +215,7 @@ augroup END
 "Windows settings {{{
 colorscheme solarized
 if has('gui_running') && has('win32')
-    set guifont=Source_Code_Pro_for_powerline:h11:cANSI:qDRAFT
+    set guifont=InputMono_Light:h10:cANSI:qDRAFT
     "remove gui toolbars and menus
     set guioptions-=m
     set guioptions-=T
