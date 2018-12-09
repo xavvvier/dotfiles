@@ -53,13 +53,14 @@ let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|packages'
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-Plugin 'Shougo/deoplete.nvim'
+"Plugin 'Shougo/deoplete.nvim'
 Plugin 'bling/vim-airline'
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-unimpaired'
+Plugin 'Raimondi/delimitMate'
 "Ctrlp -> seach files hitting C-p
 Plugin 'ctrlpvim/ctrlp.vim'
 "git
@@ -67,8 +68,8 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-git'
 Plugin 'tpope/vim-fugitive'
 "Javascript
-Plugin 'pangloss/vim-javascript'
-Plugin 'jelera/vim-javascript-syntax'
+"Plugin 'pangloss/vim-javascript'
+"Plugin 'jelera/vim-javascript-syntax'
 "Omnicompletion with tab
 Plugin 'ervandew/supertab'
 "Elixir
@@ -84,16 +85,15 @@ Plugin 'szw/vim-maximizer' "Maximize window with <leader>m
 Plugin 'simeji/winresizer' "Easy window resizing with <C-e> hjkl
 "typescript
 "follow instructions on vimproc.vim github page
-Plugin 'Shougo/vimproc.vim'
-Plugin 'Quramy/tsuquyomi'
-Plugin 'Quramy/vim-js-pretty-template'
-Plugin 'leafgarland/typescript-vim'
+"Plugin 'Shougo/vimproc.vim'
+"Plugin 'Quramy/tsuquyomi'
+"Plugin 'Quramy/vim-js-pretty-template'
+"Plugin 'leafgarland/typescript-vim'
 Plugin 'altercation/vim-colors-solarized'
 "vim-tmux navigation
 Plugin 'christoomey/vim-tmux-navigator'
 "wakatime
 Plugin 'wakatime/vim-wakatime'
-Plugin 'w0rp/ale'
 call vundle#end()            " required
 filetype plugin indent on    " required
 "}}}
@@ -112,17 +112,20 @@ nnoremap <space><space> :w<CR>
 nnoremap <leader>n :bn<CR>
 nnoremap <leader>p :bp<CR>
 nnoremap <leader>d :bp \| bd #<CR>
-nnoremap <leader>t :NERDTreeToggle<CR>
 nnoremap <leader>f :NERDTreeFind<CR>
 nmap n nzz
 nmap N Nzz
-nmap B ^
-nmap zp (zf}
 "Fast window navigation
 nnoremap <C-j> <C-W><C-j>
 nnoremap <C-k> <C-W><C-k>
 nnoremap <C-l> <C-W><C-l>
 nnoremap <C-h> <C-W><C-h>
+tnoremap <C-h> <C-\><C-N><C-w>h
+tnoremap <C-j> <C-\><C-N><C-w>j
+tnoremap <C-k> <C-\><C-N><C-w>k
+tnoremap <C-l> <C-\><C-N><C-w>l
+"Escape key in terminal emulator
+tnoremap <Esc> <C-\><C-n>
 "Window maximizer
 nnoremap <leader>m :MaximizerToggle<CR>
 
@@ -210,6 +213,8 @@ augroup comments
     autocmd FileType javascript,typescript nnoremap gC ^xx<esc>
     autocmd FileType javascript,typescript vnoremap gC :normal! ^xx<esc>
 augroup END
+"starts terminal in insert mode
+autocmd BufWinEnter,WinEnter * if &buftype == 'terminal' | silent! normal i | endif
 "}}}
 
 "Windows settings {{{
