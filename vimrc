@@ -61,6 +61,9 @@ Plugin 'jiangmiao/auto-pairs'
 "Ctrlp -> seach files hitting C-p
 Plugin 'ctrlpvim/ctrlp.vim'
 
+"NERDTree
+Plugin 'scrooloose/nerdtree'
+
 "git
 Plugin 'tpope/vim-git'
 Plugin 'tpope/vim-fugitive'
@@ -108,6 +111,8 @@ nnoremap <leader>n :bn<CR>
 nnoremap <leader>p :bp<CR>
 nnoremap <leader>d :bp \| bd #<CR>
 nnoremap <leader>e :Explore<CR>
+nnoremap <silent><leader>t :NERDTreeToggle<CR>
+nnoremap <silent><leader>f :NERDTreeFind<CR>
 nmap n nzz
 nmap N Nzz
 "Fast window navigation
@@ -230,4 +235,4 @@ endfunction
 "
 
 "Set tree as the default view in netrw
-let g:netrw_liststyle = 3
+let g:netrw_list_hide= '.*\.swp$,.*\.DS_Store'
