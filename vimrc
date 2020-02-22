@@ -22,19 +22,19 @@ set expandtab
 set softtabstop=3
 set scrolloff=5
 set smartcase
+set ignorecase
+set splitbelow
+set splitright
 set nowrap
 
-"User solarized dark
+"Use solarized dark
 set background=dark
 
 filetype plugin on
+set omnifunc=syntaxcomplete#Complete
 
 "vim/ctrlp ignore files
 set wildignore+=*/tmp/*,*.beam
-
-"Supertab 
-let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
-"let g:SuperTabContextDefaultCompletionType = "context"
 
 "Window Resizer settings
 let g:winresizer_vert_resize = 5
@@ -44,40 +44,35 @@ let g:winresizer_horiz_resize = 1
 iabbrev adn and
 iabbrev waht what
 
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|packages'
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|packages\|deps\|_build'
 
 "Plugins {{{
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+Plugin 'JamshedVesuna/vim-markdown-preview'
 Plugin 'itchyny/lightline.vim'
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-unimpaired'
-Plugin 'jiangmiao/auto-pairs'
 
 "Ctrlp -> seach files hitting C-p
 Plugin 'ctrlpvim/ctrlp.vim'
-
-"NERDTree
-Plugin 'scrooloose/nerdtree'
 
 "git
 Plugin 'tpope/vim-git'
 Plugin 'tpope/vim-fugitive'
 
 "Javascript
-"Plugin 'pangloss/vim-javascript'
+Plugin 'pangloss/vim-javascript'
 "Plugin 'jelera/vim-javascript-syntax'
-"Omnicompletion with tab
-Plugin 'ervandew/supertab'
 
 "Elixir
 Plugin 'slashmili/Alchemist.vim'
 Plugin 'elixir-editors/vim-elixir'
-Plugin 'mmorearty/elixir-ctags'
+" Plugin 'mmorearty/elixir-ctags'
 
 "Snipmate
 Plugin 'MarcWeber/vim-addon-mw-utils'
@@ -90,6 +85,18 @@ Plugin 'szw/vim-maximizer' "Maximize window with <leader>m
 Plugin 'simeji/winresizer' "Easy window resizing with <C-e> hjkl
 Plugin 'altercation/vim-colors-solarized'
 
+"Vue
+Plugin 'posva/vim-vue'
+Plugin 'leafOfTree/vim-vue-plugin'
+
+"Rust
+Plugin 'rust-lang/rust.vim'
+
+"Syntastic
+Plugin 'vim-syntastic/syntastic'
+
+"easy motion
+Plugin 'easymotion/vim-easymotion'
 "wakatime
 Plugin 'wakatime/vim-wakatime'
 call vundle#end()            " required
@@ -109,10 +116,9 @@ nnoremap q<space> q:
 nnoremap <space><space> :w<CR>
 nnoremap <leader>n :bn<CR>
 nnoremap <leader>p :bp<CR>
-nnoremap <leader>d :bp \| bd #<CR>
+" nnoremap <leader>d :bd <CR>
+nnoremap <leader>d :bp<bar>sp<bar>bn<bar>bd<CR>
 nnoremap <leader>e :Explore<CR>
-nnoremap <silent><leader>t :NERDTreeToggle<CR>
-nnoremap <silent><leader>f :NERDTreeFind<CR>
 nmap n nzz
 nmap N Nzz
 "Fast window navigation
@@ -129,11 +135,22 @@ tnoremap <Esc> <C-\><C-n>
 "Window maximizer
 nnoremap <leader>m :MaximizerToggle<CR>
 
+"Move current line up or down
+nmap <C-Up> [e
+nmap <C-Down> ]e
+
+"Move selected lines up or down
+vmap <C-Up> [egv
+vmap <C-Down> ]egv
+
 " Arrow keys
 nnoremap <left> <nop>
 nnoremap <right> <nop>
 nnoremap <up> <nop>
 nnoremap <down> <nop>
+
+"Easymotion mappings
+nmap s <Plug>(easymotion-overwin-f)
 
 " inoremap <left> <nop>
 " inoremap <right> <nop>
@@ -149,10 +166,13 @@ autocmd BufRead,BufNewFile *.js set ft=javascript syntax=javascript
 autocmd BufRead,BufNewFile *.json set ft=json syntax=javascript
 autocmd BufRead,BufNewFile,BufEnter *.ex,*.exs set ft=elixir syntax=elixir
 autocmd BufRead,BufNewFile *.eex set ft=html.elixir
+autocmd BufRead,BufNewFile *.cshtml set ft=html.razor
 autocmd FileType elixir :iabbrev po \|>
 "starts terminal in insert mode
 autocmd BufWinEnter,WinEnter * if &buftype == 'terminal' | silent! normal i | endif
 "}}}
+"no expand tabs on make files
+autocmd filetype make setlocal noexpandtab
 
 "Windows settings {{{
 colorscheme solarized
@@ -234,5 +254,16 @@ endfunction
 "run `mklink /H ".vimrc" "dotfiles/vimrc`
 "
 
+"Syntastic
+let g:syntastic_check_on_open = 1
+
 "Set tree as the default view in netrw
 let g:netrw_list_hide= '.*\.swp$,.*\.DS_Store'
+
+"markdown settings
+let vim_markdown_preview_github=1
+
+"Disable easymotion default mapings
+let g:EasyMotion_do_mapping = 0 "
+" Turn on case-insensitive feature
+let g:EasyMotion_smartcase = 1
