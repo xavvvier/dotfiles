@@ -119,6 +119,7 @@ nnoremap <leader>p :bp<CR>
 " nnoremap <leader>d :bd <CR>
 nnoremap <leader>d :bp<bar>sp<bar>bn<bar>bd<CR>
 nnoremap <leader>e :Explore<CR>
+nnoremap <leader>b :CtrlPBuffer<CR>
 nmap n nzz
 nmap N Nzz
 "Fast window navigation
@@ -175,7 +176,7 @@ autocmd BufWinEnter,WinEnter * if &buftype == 'terminal' | silent! normal i | en
 autocmd filetype make setlocal noexpandtab
 
 "Windows settings {{{
-colorscheme solarized
+" colorscheme solarized
 if has('gui_running') && has('win32')
     set guifont=InputMono_Light:h10:cANSI:qDRAFT
     "remove gui toolbars and menus
