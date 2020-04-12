@@ -176,7 +176,6 @@ autocmd BufWinEnter,WinEnter * if &buftype == 'terminal' | silent! normal i | en
 autocmd filetype make setlocal noexpandtab
 
 "Windows settings {{{
-colorscheme solarized
 "Use solarized dark
 set background=dark
 
