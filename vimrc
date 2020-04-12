@@ -15,6 +15,7 @@ set hidden
 highlight clear SignColumn
 highlight CursorLine cterm=NONE ctermbg=black guibg=#101520
 set nocursorcolumn
+
 set cursorline
 set tabstop=3
 set shiftwidth=3
@@ -26,9 +27,7 @@ set ignorecase
 set splitbelow
 set splitright
 set nowrap
-
-"Use solarized dark
-set background=dark
+set noshowmode
 
 filetype plugin on
 set omnifunc=syntaxcomplete#Complete
@@ -84,6 +83,7 @@ Plugin 'honza/vim-snippets'
 Plugin 'szw/vim-maximizer' "Maximize window with <leader>m
 Plugin 'simeji/winresizer' "Easy window resizing with <C-e> hjkl
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'tpope/vim-vinegar'
 
 "Vue
 Plugin 'posva/vim-vue'
@@ -119,6 +119,7 @@ nnoremap <leader>p :bp<CR>
 " nnoremap <leader>d :bd <CR>
 nnoremap <leader>d :bp<bar>sp<bar>bn<bar>bd<CR>
 nnoremap <leader>e :Explore<CR>
+nnoremap <leader>b :CtrlPBuffer<CR>
 nmap n nzz
 nmap N Nzz
 "Fast window navigation
@@ -176,6 +177,9 @@ autocmd filetype make setlocal noexpandtab
 
 "Windows settings {{{
 colorscheme solarized
+"Use solarized dark
+set background=dark
+
 if has('gui_running') && has('win32')
     set guifont=InputMono_Light:h10:cANSI:qDRAFT
     "remove gui toolbars and menus
@@ -222,6 +226,7 @@ hi Search ctermbg=gray ctermfg=17
 
 " highline configuration {{{
 let g:lightline = {
+    \ 'colorscheme': 'solarized',
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ], ['filenameshort' ], [ 'gitbranch' ] ],
     \   'right': [ [ 'lineinfo' ], [ 'filetype', 'fileencoding' ] ]
@@ -233,7 +238,6 @@ let g:lightline = {
     \ },
     \ 'tabline': {
     \   'left': [ [ 'tabs' ]],
-    \   'right': [ [ 'close' ]]
     \ },
     \ 'enable': {'tabline': 1},
     \ 'component_function': {
