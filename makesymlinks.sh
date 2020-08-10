@@ -8,7 +8,7 @@
 
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
-files="vimrc spacemacs bashrc zshrc tmux.conf"    # list of files/folders to symlink in homedir
+files="vimrc spacemacs bashrc zshrc tmux.conf gitconfig"    # list of files/folders to symlink in homedir
 datenow=$(date '+%Y-%m-%d')
 #########
 

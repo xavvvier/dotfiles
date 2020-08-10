@@ -1,0 +1,10 @@
+[user]
+	name = xavvvier
+	email = xavvvier@users.noreply.github.com
+[core]
+	excludefile = /Users/xavvvier/.gitignore
+	excludesfile = /Users/xavvvier/.gitignore
+	editor = /usr/local/bin/vim
+[alias]
+	st = status
+   co = checkout

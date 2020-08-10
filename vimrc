@@ -19,7 +19,7 @@ set nocursorcolumn
 set cursorline
 set tabstop=3
 set shiftwidth=3
-set expandtab
+set noexpandtab
 set softtabstop=3
 set scrolloff=5
 set smartcase
@@ -259,6 +259,7 @@ endfunction
 
 "Syntastic
 let g:syntastic_check_on_open = 1
+let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"phx-"]
 
 "Set tree as the default view in netrw
 let g:netrw_list_hide= '.*\.swp$,.*\.DS_Store'
