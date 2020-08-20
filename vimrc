@@ -14,13 +14,14 @@ set hidden
 
 highlight clear SignColumn
 highlight CursorLine cterm=NONE ctermbg=black guibg=#101520
+
+" Show invisible chars (tabs and EOL)
+set listchars=tab:▸\ ,eol:¬
+set list
+highlight NonText guifg=black ctermfg=black
 set nocursorcolumn
 
 set cursorline
-set tabstop=3
-set shiftwidth=3
-set noexpandtab
-set softtabstop=3
 set scrolloff=5
 set smartcase
 set ignorecase
@@ -28,6 +29,14 @@ set splitbelow
 set splitright
 set nowrap
 set noshowmode
+
+filetype plugin indent on
+" Show existing tab with 3 spaces
+set tabstop=3
+" When indenting with '>' use tabs
+set shiftwidth=3
+" On pressing tab do not insert spaces
+set noexpandtab
 
 filetype plugin on
 set omnifunc=syntaxcomplete#Complete
@@ -73,10 +82,9 @@ Plugin 'slashmili/Alchemist.vim'
 Plugin 'elixir-editors/vim-elixir'
 " Plugin 'mmorearty/elixir-ctags'
 
-"Snipmate
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
+"Snipets
+Plugin 'SirVer/ultisnips'
+let g:UltiSnipsExpandTrigger="<tab>"
 Plugin 'honza/vim-snippets'
 
 "Window management
@@ -98,7 +106,10 @@ Plugin 'vim-syntastic/syntastic'
 "easy motion
 Plugin 'easymotion/vim-easymotion'
 "wakatime
-Plugin 'wakatime/vim-wakatime'
+" Plugin 'wakatime/vim-wakatime'
+
+" React
+Plugin 'maxmellon/vim-jsx-pretty'
 call vundle#end()            " required
 filetype plugin indent on    " required
 "}}}
@@ -171,6 +182,10 @@ autocmd BufRead,BufNewFile *.cshtml set ft=html.razor
 autocmd FileType elixir :iabbrev po \|>
 "starts terminal in insert mode
 autocmd BufWinEnter,WinEnter * if &buftype == 'terminal' | silent! normal i | endif
+augroup javascript_folding
+    au!
+    au FileType javascript setlocal foldmethod=syntax
+augroup END
 "}}}
 "no expand tabs on make files
 autocmd filetype make setlocal noexpandtab

@@ -25,3 +25,7 @@ function changeMac() {
   echo "Your new physical address is $mac"
 }
 # run as "changeMac" on terminal
+
+
+export ANDROID_SDK=/Users/jgonzalez/Library/Android/sdk
+export PATH=/Users/jgonzalez/Library/Android/sdk/platform-tools:$PATH
