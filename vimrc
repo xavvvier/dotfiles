@@ -13,12 +13,13 @@ set backspace=indent,eol,start
 set hidden
 
 highlight clear SignColumn
-highlight CursorLine cterm=NONE ctermbg=black guibg=#101520
+highlight CursorLine cterm=bold
 
 " Show invisible chars (tabs and EOL)
 set listchars=tab:▸\ ,eol:¬
 set list
 highlight NonText guifg=black ctermfg=black
+highlight SpecialKey guifg=black ctermfg=black
 set nocursorcolumn
 
 set cursorline
@@ -80,6 +81,8 @@ Plugin 'pangloss/vim-javascript'
 "Elixir
 Plugin 'slashmili/Alchemist.vim'
 Plugin 'elixir-editors/vim-elixir'
+Plugin 'mhinz/vim-mix-format'
+let g:mix_format_on_save = 1
 " Plugin 'mmorearty/elixir-ctags'
 
 "Snipets
@@ -106,7 +109,7 @@ Plugin 'vim-syntastic/syntastic'
 "easy motion
 Plugin 'easymotion/vim-easymotion'
 "wakatime
-" Plugin 'wakatime/vim-wakatime'
+Plugin 'wakatime/vim-wakatime'
 
 " React
 Plugin 'maxmellon/vim-jsx-pretty'
@@ -131,8 +134,8 @@ nnoremap <leader>p :bp<CR>
 nnoremap <leader>d :bp<bar>sp<bar>bn<bar>bd<CR>
 nnoremap <leader>e :Explore<CR>
 nnoremap <leader>b :CtrlPBuffer<CR>
-nmap n nzz
-nmap N Nzz
+" nmap n nzz
+" nmap N Nzz
 "Fast window navigation
 nnoremap <C-j> <C-W><C-j>
 nnoremap <C-k> <C-W><C-k>
@@ -177,7 +180,7 @@ autocmd BufRead,BufNewFile *.less set filetype=less
 autocmd BufRead,BufNewFile *.js set ft=javascript syntax=javascript
 autocmd BufRead,BufNewFile *.json set ft=json syntax=javascript
 autocmd BufRead,BufNewFile,BufEnter *.ex,*.exs set ft=elixir syntax=elixir
-autocmd BufRead,BufNewFile *.eex set ft=html.elixir
+autocmd BufRead,BufNewFile *.leex,*.eex set ft=html.elixir
 autocmd BufRead,BufNewFile *.cshtml set ft=html.razor
 autocmd FileType elixir :iabbrev po \|>
 "starts terminal in insert mode
@@ -185,6 +188,14 @@ autocmd BufWinEnter,WinEnter * if &buftype == 'terminal' | silent! normal i | en
 augroup javascript_folding
     au!
     au FileType javascript setlocal foldmethod=syntax
+augroup END
+augroup elixir_folding
+    au!
+    au FileType elixir setlocal foldmethod=syntax
+augroup END
+augroup html_folding
+    au!
+    au FileType html setlocal foldmethod=indent
 augroup END
 "}}}
 "no expand tabs on make files
@@ -211,8 +222,7 @@ augroup filetype_vim
 augroup END
 " }}}
 
-" Folding setting {{{
-hi Folded cterm=NONE
+" Text to show on Fold sections {{{
 function! NeatFoldText()
   let line = ' ' . substitute(getline(v:foldstart), '^\s*"\?\s*\|\s*"\?\s*{{' . '{\d*\s*', '', 'g') . ' '
   let lines_count = v:foldend - v:foldstart + 1
@@ -236,11 +246,11 @@ set ttimeoutlen=50
 set mouse=a
 hi VertSplit ctermbg=none  guifg=black guibg=black cterm=NONE gui=NONE
 set hlsearch
-hi Search ctermbg=gray ctermfg=17
+hi Search cterm=underline ctermbg=6
+hi Folded cterm=bold ctermbg=NONE
 
 " highline configuration {{{
 let g:lightline = {
-    \ 'colorscheme': 'solarized',
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ], ['filenameshort' ], [ 'gitbranch' ] ],
     \   'right': [ [ 'lineinfo' ], [ 'filetype', 'fileencoding' ] ]
