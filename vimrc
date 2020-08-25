@@ -76,18 +76,14 @@ Plugin 'tpope/vim-fugitive'
 
 "Javascript
 Plugin 'pangloss/vim-javascript'
-"Plugin 'jelera/vim-javascript-syntax'
 
 "Elixir
 Plugin 'slashmili/Alchemist.vim'
 Plugin 'elixir-editors/vim-elixir'
 Plugin 'mhinz/vim-mix-format'
-let g:mix_format_on_save = 1
-" Plugin 'mmorearty/elixir-ctags'
 
 "Snipets
 Plugin 'SirVer/ultisnips'
-let g:UltiSnipsExpandTrigger="<tab>"
 Plugin 'honza/vim-snippets'
 
 "Window management
@@ -113,14 +109,36 @@ Plugin 'wakatime/vim-wakatime'
 
 " React
 Plugin 'maxmellon/vim-jsx-pretty'
+
+" Prettier
+Plugin 'prettier/vim-prettier'
+
 call vundle#end()            " required
 filetype plugin indent on    " required
 "}}}
 
+
+" Plugin settings{{{
+let g:mix_format_on_save = 1
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:prettier#autoformat_require_pragma = 0"
+"markdown settings
+let vim_markdown_preview_github=1
+"Syntastic
+let g:syntastic_check_on_open = 1
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"phx-"]
+let g:syntastic_javascript_checkers = ['eslint']
+"Disable easymotion default mapings
+let g:EasyMotion_do_mapping = 0 "
+" Turn on case-insensitive feature
+let g:EasyMotion_smartcase = 1
+"}}}
+
 " Mappings -------- {{{
 let mapleader = ','
-nnoremap <leader>v :vsp $MYVIMRC<cr>
-nnoremap <leader>sv :so $MYVIMRC<cr>
+nnoremap <leader>v :tabe $MYVIMRC<cr>
 
 nnoremap 0p "0p
 nnoremap <leader><leader> <C-^>
@@ -188,6 +206,7 @@ autocmd BufWinEnter,WinEnter * if &buftype == 'terminal' | silent! normal i | en
 augroup javascript_folding
     au!
     au FileType javascript setlocal foldmethod=syntax
+	 au BufWritePre *.js :Prettier
 augroup END
 augroup elixir_folding
     au!
@@ -282,17 +301,6 @@ endfunction
 "run `mklink /H ".vimrc" "dotfiles/vimrc`
 "
 
-"Syntastic
-let g:syntastic_check_on_open = 1
-let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"phx-"]
-
 "Set tree as the default view in netrw
 let g:netrw_list_hide= '.*\.swp$,.*\.DS_Store'
 
-"markdown settings
-let vim_markdown_preview_github=1
-
-"Disable easymotion default mapings
-let g:EasyMotion_do_mapping = 0 "
-" Turn on case-insensitive feature
-let g:EasyMotion_smartcase = 1
