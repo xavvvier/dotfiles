@@ -91,6 +91,7 @@ Plugin 'szw/vim-maximizer' "Maximize window with <leader>m
 Plugin 'simeji/winresizer' "Easy window resizing with <C-e> hjkl
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'tpope/vim-vinegar'
+Plugin 'vim-scripts/BufOnly.vim'
 
 "Vue
 Plugin 'posva/vim-vue'
@@ -203,6 +204,7 @@ autocmd BufRead,BufNewFile *.cshtml set ft=html.razor
 autocmd FileType elixir :iabbrev po \|>
 "starts terminal in insert mode
 autocmd BufWinEnter,WinEnter * if &buftype == 'terminal' | silent! normal i | endif
+set foldlevelstart=5
 augroup javascript_folding
     au!
     au FileType javascript setlocal foldmethod=syntax

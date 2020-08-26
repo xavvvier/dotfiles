@@ -27,5 +27,9 @@ function changeMac() {
 # run as "changeMac" on terminal
 
 
-export ANDROID_SDK=/Users/jgonzalez/Library/Android/sdk
-export PATH=/Users/jgonzalez/Library/Android/sdk/platform-tools:$PATH
+# ANDROID paths
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
