@@ -114,6 +114,10 @@ Plugin 'maxmellon/vim-jsx-pretty'
 " Prettier
 Plugin 'prettier/vim-prettier'
 
+" tags
+" Install universal ctags: https://github.com/universal-ctags/ctags#mac
+Plugin 'ludovicchabant/vim-gutentags'
+
 call vundle#end()            " required
 filetype plugin indent on    " required
 "}}}
@@ -207,7 +211,7 @@ autocmd BufWinEnter,WinEnter * if &buftype == 'terminal' | silent! normal i | en
 set foldlevelstart=5
 augroup javascript_folding
     au!
-    au FileType javascript setlocal foldmethod=syntax
+    au FileType javascript,typescript setlocal foldmethod=syntax
 	 au BufWritePre *.js :Prettier
 augroup END
 augroup elixir_folding
@@ -305,4 +309,45 @@ endfunction
 
 "Set tree as the default view in netrw
 let g:netrw_list_hide= '.*\.swp$,.*\.DS_Store'
+
+" Gutentag exclude settings
+"
+let g:gutentags_ctags_exclude = [
+	\ '*.git', '*.svg', '*.hg',
+	\ '*/tests/*',
+	\ 'build',
+	\ 'dist',
+	\ '*sites/*/files/*',
+	\ 'bin',
+	\ 'node_modules',
+	\ 'bower_components',
+	\ 'cache',
+	\ 'compiled',
+	\ 'docs',
+	\ 'example',
+	\ 'bundle',
+	\ 'vendor',
+	\ '*.md',
+	\ '*-lock.json',
+	\ '*.lock',
+	\ '*bundle*.js',
+	\ '*build*.js',
+	\ '.*rc*',
+	\ '*.json',
+	\ '*.min.*',
+	\ '*.map',
+	\ '*.bak',
+	\ '*.zip',
+	\ '*.pyc',
+	\ '*.class',
+	\ '*.tmp',
+	\ '*.cache',
+	\ '*.pdb',
+	\ 'tags*',
+	\ '*.css',
+	\ '*.less',
+	\ '*.scss',
+	\ '*.swp', '*.swo',
+	\ '*.bmp', '*.gif', '*.ico', '*.jpg', '*.png',
+	\ ]
 
