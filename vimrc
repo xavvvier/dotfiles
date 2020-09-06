@@ -12,14 +12,10 @@ set backspace=indent,eol,start
 "Let me jump between unsaved buffers
 set hidden
 
-highlight clear SignColumn
-highlight CursorLine cterm=bold
 
 " Show invisible chars (tabs and EOL)
 set listchars=tab:▸\ ,eol:¬
 set list
-highlight NonText guifg=black ctermfg=black
-highlight SpecialKey guifg=black ctermfg=black
 set nocursorcolumn
 
 set cursorline
@@ -43,7 +39,7 @@ filetype plugin on
 set omnifunc=syntaxcomplete#Complete
 
 "vim/ctrlp ignore files
-set wildignore+=*/tmp/*,*.beam
+set wildignore+=*/tmp/*,*.beam,*/node_modules/*,*/deps/*
 
 "Window Resizer settings
 let g:winresizer_vert_resize = 5
@@ -131,6 +127,7 @@ let g:prettier#autoformat_require_pragma = 0"
 let vim_markdown_preview_github=1
 "Syntastic
 let g:syntastic_check_on_open = 1
+let g:syntastic_auto_jump = 3
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"phx-"]
@@ -200,7 +197,7 @@ nmap s <Plug>(easymotion-overwin-f)
 "Autocmd commands {{{
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 autocmd BufRead,BufNewFile *.less set filetype=less
-autocmd BufRead,BufNewFile *.js set ft=javascript syntax=javascript
+autocmd BufRead,BufNewFile *.js,*.tsx,*.jsx set ft=javascript syntax=javascript
 autocmd BufRead,BufNewFile *.json set ft=json syntax=javascript
 autocmd BufRead,BufNewFile,BufEnter *.ex,*.exs set ft=elixir syntax=elixir
 autocmd BufRead,BufNewFile *.leex,*.eex set ft=html.elixir
@@ -212,7 +209,9 @@ set foldlevelstart=5
 augroup javascript_folding
     au!
     au FileType javascript,typescript setlocal foldmethod=syntax
-	 au BufWritePre *.js :Prettier
+	 au BufWritePre *.js,*.jsx,*.tsx :Prettier
+    set shiftwidth=2
+    set expandtab
 augroup END
 augroup elixir_folding
     au!
@@ -269,10 +268,7 @@ set laststatus=2
 set ttimeoutlen=50
 
 set mouse=a
-hi VertSplit ctermbg=none  guifg=black guibg=black cterm=NONE gui=NONE
 set hlsearch
-hi Search cterm=underline ctermbg=6
-hi Folded cterm=bold ctermbg=NONE
 
 " highline configuration {{{
 let g:lightline = {
@@ -351,3 +347,14 @@ let g:gutentags_ctags_exclude = [
 	\ '*.bmp', '*.gif', '*.ico', '*.jpg', '*.png',
 	\ ]
 
+color solarized
+set background=light
+highlight clear CursorLine
+highlight CursorLine cterm=bold
+highlight clear SignColumn
+highlight clear VertSplit
+highlight VertSplit cterm=none
+highlight Search cterm=underline ctermbg=6
+highlight Folded cterm=bold ctermbg=NONE
+highlight NonText guifg=black ctermfg=black
+highlight SpecialKey guifg=black ctermfg=black
