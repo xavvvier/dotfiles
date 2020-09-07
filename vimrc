@@ -122,6 +122,7 @@ filetype plugin indent on    " required
 " Plugin settings{{{
 let g:mix_format_on_save = 1
 let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsSnippetDirectories=["~/dotfiles/snippets/"]
 let g:prettier#autoformat_require_pragma = 0"
 "markdown settings
 let vim_markdown_preview_github=1
@@ -211,7 +212,7 @@ augroup javascript_folding
     au FileType javascript,typescript setlocal foldmethod=syntax
 	 au BufWritePre *.js,*.jsx,*.tsx :Prettier
     set shiftwidth=2
-    set expandtab
+    setlocal expandtab
 augroup END
 augroup elixir_folding
     au!
