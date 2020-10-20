@@ -131,7 +131,12 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_auto_jump = 3
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"phx-"]
+" let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"phx-", "discarding unexpected \</form\>"]
+let g:syntastic_quiet_messages = {
+    \ "!level":  "errors",
+    \ "type":    "style",
+    \ "regex":   ['discarding unexpected </form>'],
+    \ "file:e":  ['leex'] }
 let g:syntastic_javascript_checkers = ['eslint']
 "Disable easymotion default mapings
 let g:EasyMotion_do_mapping = 0 "
@@ -349,13 +354,14 @@ let g:gutentags_ctags_exclude = [
 	\ ]
 
 color solarized
-set background=light
+set background=dark
 highlight clear CursorLine
-highlight CursorLine cterm=bold
+highlight CursorLine cterm=bold gui=bold
 highlight clear SignColumn
 highlight clear VertSplit
-highlight VertSplit cterm=none
-highlight Search cterm=underline ctermbg=6
-highlight Folded cterm=bold ctermbg=NONE
+highlight VertSplit cterm=none gui=none
+highlight Folded cterm=bold gui=bold
 highlight NonText guifg=black ctermfg=black
 highlight SpecialKey guifg=black ctermfg=black
+highlight clear Search
+highlight Search cterm=underline gui=underline
