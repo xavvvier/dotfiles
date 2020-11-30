@@ -51,8 +51,8 @@ iabbrev waht what
 
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|packages\|deps\|_build'
 
+
 "Plugins {{{
-" set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'JamshedVesuna/vim-markdown-preview'
@@ -63,6 +63,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-unimpaired'
 
+Plugin 'neoclide/coc.nvim'
 "Ctrlp -> seach files hitting C-p
 Plugin 'ctrlpvim/ctrlp.vim'
 
@@ -74,7 +75,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'pangloss/vim-javascript'
 
 "Elixir
-Plugin 'slashmili/Alchemist.vim'
+" Plugin 'slashmili/Alchemist.vim'
 Plugin 'elixir-editors/vim-elixir'
 Plugin 'mhinz/vim-mix-format'
 
@@ -86,12 +87,12 @@ Plugin 'honza/vim-snippets'
 Plugin 'szw/vim-maximizer' "Maximize window with <leader>m
 Plugin 'simeji/winresizer' "Easy window resizing with <C-e> hjkl
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'tpope/vim-vinegar'
+Plugin 'scrooloose/nerdtree'
 Plugin 'vim-scripts/BufOnly.vim'
 
 "Vue
-Plugin 'posva/vim-vue'
-Plugin 'leafOfTree/vim-vue-plugin'
+" Plugin 'posva/vim-vue'
+" Plugin 'leafOfTree/vim-vue-plugin'
 
 "Rust
 Plugin 'rust-lang/rust.vim'
@@ -105,7 +106,7 @@ Plugin 'easymotion/vim-easymotion'
 Plugin 'wakatime/vim-wakatime'
 
 " React
-Plugin 'maxmellon/vim-jsx-pretty'
+" Plugin 'maxmellon/vim-jsx-pretty'
 
 " Prettier
 Plugin 'prettier/vim-prettier'
@@ -297,6 +298,14 @@ let g:lightline = {
     \ },
     \ }
 
+" NERDTree
+let NERDTreeShowHidden=1
+let NERDTreeQuitOnOpen=1
+let NERDTreeAutoDeleteBuffer=1
+let NERDTreeMinimalUI=1
+let NERDTreeDirArrows=1
+nmap <leader>t :NERDTreeFind<CR>
+
 function! LightlineFilename()
     let filename = expand('%:t') !=# '' ? expand('%:t'): '[No Name]'
     let modified = &modified ? ' +': ''
@@ -365,3 +374,6 @@ highlight NonText guifg=black ctermfg=black
 highlight SpecialKey guifg=black ctermfg=black
 highlight clear Search
 highlight Search cterm=underline gui=underline
+
+source ~/dotfiles/vim/coc.vim
+
