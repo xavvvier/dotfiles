@@ -86,9 +86,10 @@ Plugin 'honza/vim-snippets'
 "Window management
 Plugin 'szw/vim-maximizer' "Maximize window with <leader>m
 Plugin 'simeji/winresizer' "Easy window resizing with <C-e> hjkl
-Plugin 'altercation/vim-colors-solarized'
+"Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-scripts/BufOnly.vim'
+Plugin 'christoomey/vim-tmux-navigator'
 
 "Vue
 " Plugin 'posva/vim-vue'
@@ -234,7 +235,7 @@ autocmd filetype make setlocal noexpandtab
 
 "Windows settings {{{
 "Use solarized dark
-set background=dark
+"set background=dark
 
 if has('gui_running') && has('win32')
     set guifont=InputMono_Light:h10:cANSI:qDRAFT
@@ -362,7 +363,7 @@ let g:gutentags_ctags_exclude = [
 	\ '*.bmp', '*.gif', '*.ico', '*.jpg', '*.png',
 	\ ]
 
-color solarized
+"color solarized
 set background=dark
 highlight clear CursorLine
 highlight CursorLine cterm=bold gui=bold

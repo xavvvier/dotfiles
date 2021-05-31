@@ -15,7 +15,7 @@ alias ll='ls -laG'
 alias mt='mix test'
 alias mto='mix test --only only'
 alias mps='mix phx.server'
-alias e='nvim -S Session.vim'
+alias e='nvim'
 
 function changeMac() {
   local mac=$(openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//')
