@@ -1,9 +1,17 @@
 [user]
 	name = xavvvier
 	email = xavvvier@users.noreply.github.com
+
 [core]
 	excludesfile = ~/.gitignore
 	editor = /usr/local/bin/vim
+	autocrlf = false
+	filemode = false
+	precomposeUnicode = true
+
 [alias]
 	st = status
    co = checkout
+
+[color]
+	ui = true

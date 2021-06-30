@@ -8,7 +8,7 @@
 
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
-files="vimrc spacemacs bashrc zshrc tmux.conf gitconfig"    # list of files/folders to symlink in homedir
+files="vimrc bashrc zshrc tmux.conf gitconfig gitignore"    # list of files/folders to symlink in homedir
 datenow=$(date '+%Y-%m-%d')
 #########
 
@@ -34,3 +34,5 @@ done
 if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 fi
+
+

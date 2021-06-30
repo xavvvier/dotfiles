@@ -55,7 +55,7 @@ let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|packages\|deps\|_build
 "Plugins {{{
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-Plugin 'JamshedVesuna/vim-markdown-preview'
+" Plugin 'JamshedVesuna/vim-markdown-preview'
 Plugin 'itchyny/lightline.vim'
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tomtom/tcomment_vim'
@@ -63,9 +63,13 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-unimpaired'
 
-Plugin 'neoclide/coc.nvim'
 "Ctrlp -> seach files hitting C-p
 Plugin 'ctrlpvim/ctrlp.vim'
+
+"completion
+" C-n to select the next suggestion
+" C-p to select the previous suggestion
+Plugin 'Shougo/deoplete.nvim'
 
 "git
 Plugin 'tpope/vim-git'
@@ -75,12 +79,14 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'pangloss/vim-javascript'
 
 "Elixir
-" Plugin 'slashmili/Alchemist.vim'
+Plugin 'slashmili/Alchemist.vim'
 Plugin 'elixir-editors/vim-elixir'
 Plugin 'mhinz/vim-mix-format'
 
 "Snipets
 Plugin 'SirVer/ultisnips'
+" C-j moves to next placeholder
+" C-k moves to previous placeholder
 Plugin 'honza/vim-snippets'
 
 "Window management
@@ -96,7 +102,7 @@ Plugin 'christoomey/vim-tmux-navigator'
 " Plugin 'leafOfTree/vim-vue-plugin'
 
 "Rust
-Plugin 'rust-lang/rust.vim'
+" Plugin 'rust-lang/rust.vim'
 
 "Syntastic
 Plugin 'vim-syntastic/syntastic'
@@ -122,6 +128,7 @@ filetype plugin indent on    " required
 
 
 " Plugin settings{{{
+let g:deoplete#enable_at_startup = 1
 let g:mix_format_on_save = 1
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsSnippetDirectories=["~/dotfiles/snippets/"]
@@ -194,6 +201,8 @@ nnoremap <down> <nop>
 
 "Easymotion mappings
 nmap s <Plug>(easymotion-overwin-f)
+
+inoremap <c-x><c-k> <c-x><c-k>
 
 " inoremap <left> <nop>
 " inoremap <right> <nop>
@@ -305,7 +314,8 @@ let NERDTreeQuitOnOpen=1
 let NERDTreeAutoDeleteBuffer=1
 let NERDTreeMinimalUI=1
 let NERDTreeDirArrows=1
-nmap <leader>t :NERDTreeFind<CR>
+nmap <leader>f :NERDTreeFind<CR>
+nmap <leader>t :NERDTreeToggle<CR>
 
 function! LightlineFilename()
     let filename = expand('%:t') !=# '' ? expand('%:t'): '[No Name]'
@@ -322,8 +332,16 @@ endfunction
 "Set tree as the default view in netrw
 let g:netrw_list_hide= '.*\.swp$,.*\.DS_Store'
 
-" Gutentag exclude settings
-"
+" Gutentag settings
+" How to gutentag identifies a new project folder
+let g:gutentags_add_default_project_roots = 0
+let g:gutentags_project_root = ['package.json', '.gitignore', '.git']
+" When to generate the tags file
+let g:gutentags_generate_on_new = 1
+let g:gutentags_generate_on_missing = 1
+let g:gutentags_generate_on_write = 1
+let g:gutentags_generate_on_empty_buffer = 0
+" What files/folders exclude from tag generation
 let g:gutentags_ctags_exclude = [
 	\ '*.git', '*.svg', '*.hg',
 	\ '*/tests/*',
@@ -376,5 +394,4 @@ highlight SpecialKey guifg=black ctermfg=black
 highlight clear Search
 highlight Search cterm=underline gui=underline
 
-source ~/dotfiles/vim/coc.vim
 
