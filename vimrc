@@ -113,7 +113,7 @@ Plugin 'easymotion/vim-easymotion'
 Plugin 'wakatime/vim-wakatime'
 
 " React
-" Plugin 'maxmellon/vim-jsx-pretty'
+Plugin 'maxmellon/vim-jsx-pretty'
 
 " Prettier
 Plugin 'prettier/vim-prettier'
@@ -128,7 +128,14 @@ filetype plugin indent on    " required
 
 
 " Plugin settings{{{
-let g:deoplete#enable_at_startup = 1
+" Enable deoplete when InsertEnter.
+let g:deoplete#enable_at_startup = 0
+autocmd InsertEnter * call deoplete#enable()
+" let g:deoplete#enable_at_startup = 1
+" Remap Ctrl-J to Ctrl-N to select next match on the completion list
+inoremap <expr><c-j> pumvisible() ? "\<c-n>" : "\<c-j>"
+" Remap Ctrl-K to Ctrl-P to select next match on the completion list
+inoremap <expr><c-k> pumvisible() ? "\<c-p>" : "\<c-k>"
 let g:mix_format_on_save = 1
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsSnippetDirectories=["~/dotfiles/snippets/"]
@@ -222,12 +229,12 @@ autocmd BufRead,BufNewFile *.cshtml set ft=html.razor
 autocmd FileType elixir :iabbrev po \|>
 "starts terminal in insert mode
 autocmd BufWinEnter,WinEnter * if &buftype == 'terminal' | silent! normal i | endif
-set foldlevelstart=5
+set foldlevelstart=20
 augroup javascript_folding
     au!
     au FileType javascript,typescript setlocal foldmethod=syntax
 	 au BufWritePre *.js,*.jsx,*.tsx :Prettier
-    set shiftwidth=2
+    set shiftwidth=3
     setlocal expandtab
 augroup END
 augroup elixir_folding
