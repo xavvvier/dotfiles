@@ -101,9 +101,6 @@ Plugin 'christoomey/vim-tmux-navigator'
 " Plugin 'posva/vim-vue'
 " Plugin 'leafOfTree/vim-vue-plugin'
 
-"Rust
-" Plugin 'rust-lang/rust.vim'
-
 "Syntastic
 Plugin 'vim-syntastic/syntastic'
 
@@ -143,7 +140,7 @@ let g:prettier#autoformat_require_pragma = 0"
 "markdown settings
 let vim_markdown_preview_github=1
 "Syntastic
-let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_open = 1
 let g:syntastic_auto_jump = 3
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
