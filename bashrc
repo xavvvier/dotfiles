@@ -28,25 +28,5 @@ function changeMac() {
 # run as "changeMac" on terminal
 
 
-# ANDROID paths
-export ANDROID_HOME=$HOME/Library/Android/sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-export PATH=$PATH:/opt/webOS_TV_SDK/CLI/bin
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-    PATH=$PATH:~/code/chromium/depot_tools
-fi
 
-
-export TIZEN_TOOLS=/Users/jgonzalez/tizen-studio/tools/
-export TIZEN_PATH=/Users/jgonzalez/tizen-studio/tools/ide/bin
-export PATH=$PATH:$TIZEN_TOOLS
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-export PATH=$PATH:$TIZEN_PATH
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+. /opt/homebrew/opt/asdf/asdf.sh
