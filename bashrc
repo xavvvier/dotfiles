@@ -12,12 +12,15 @@ export PS1="\w\$(git_branch) \\$\[$(tput sgr0)\] "
 
 export ERL_AFLAGS="-kernel shell_history enabled"
 
+export HISTCONTROL=ignoreboth:erasedups
+
 alias ..='cd ..'
 alias ll='ls -laG'
 alias mt='mix test'
 alias mto='mix test --only only'
 alias mps='mix phx.server'
-alias e='vim'
+alias vim='nvim'
+alias e='nvim'
 
 function changeMac() {
   local mac=$(openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//')
@@ -30,5 +33,5 @@ function changeMac() {
 
 
 
-. /usr/local/opt/asdf/libexec/asdf.sh
-#. /opt/homebrew/opt/asdf/asdf.sh
+[ -d "/usr/local/opt/asdf" ] && . /usr/local/opt/asdf/libexec/asdf.sh
+[ -d "/opt/homebrew/opt/asdf" ] && . /opt/homebrew/opt/asdf/asdf.sh
