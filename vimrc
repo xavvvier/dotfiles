@@ -66,6 +66,14 @@ Plugin 'tpope/vim-unimpaired'
 "Ctrlp -> seach files hitting C-p
 Plugin 'ctrlpvim/ctrlp.vim'
 
+<<<<<<< HEAD
+=======
+"completion
+" C-n to select the next suggestion
+" C-p to select the previous suggestion
+" Plugin 'Shougo/deoplete.nvim'
+
+>>>>>>> 894aad7ef1328bf61e0d01c72c0e446cd1e4f1a6
 "git
 Plugin 'tpope/vim-git'
 Plugin 'tpope/vim-fugitive'
@@ -95,7 +103,6 @@ Plugin 'christoomey/vim-tmux-navigator'
 "Vue
 " Plugin 'posva/vim-vue'
 " Plugin 'leafOfTree/vim-vue-plugin'
-
 
 "easy motion
 Plugin 'easymotion/vim-easymotion'
