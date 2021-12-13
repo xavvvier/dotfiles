@@ -66,11 +66,6 @@ Plugin 'tpope/vim-unimpaired'
 "Ctrlp -> seach files hitting C-p
 Plugin 'ctrlpvim/ctrlp.vim'
 
-"completion
-" C-n to select the next suggestion
-" C-p to select the previous suggestion
-Plugin 'Shougo/deoplete.nvim'
-
 "git
 Plugin 'tpope/vim-git'
 Plugin 'tpope/vim-fugitive'
@@ -101,8 +96,6 @@ Plugin 'christoomey/vim-tmux-navigator'
 " Plugin 'posva/vim-vue'
 " Plugin 'leafOfTree/vim-vue-plugin'
 
-"Syntastic
-Plugin 'vim-syntastic/syntastic'
 
 "easy motion
 Plugin 'easymotion/vim-easymotion'
@@ -125,10 +118,6 @@ filetype plugin indent on    " required
 
 
 " Plugin settings{{{
-" Enable deoplete when InsertEnter.
-let g:deoplete#enable_at_startup = 0
-autocmd InsertEnter * call deoplete#enable()
-" let g:deoplete#enable_at_startup = 1
 " Remap Ctrl-J to Ctrl-N to select next match on the completion list
 inoremap <expr><c-j> pumvisible() ? "\<c-n>" : "\<c-j>"
 " Remap Ctrl-K to Ctrl-P to select next match on the completion list
@@ -139,18 +128,6 @@ let g:UltiSnipsSnippetDirectories=["~/dotfiles/snippets/"]
 let g:prettier#autoformat_require_pragma = 0"
 "markdown settings
 let vim_markdown_preview_github=1
-"Syntastic
-" let g:syntastic_check_on_open = 1
-let g:syntastic_auto_jump = 3
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-" let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"phx-", "discarding unexpected \</form\>"]
-let g:syntastic_quiet_messages = {
-    \ "!level":  "errors",
-    \ "type":    "style",
-    \ "regex":   ['discarding unexpected </form>'],
-    \ "file:e":  ['leex'] }
-let g:syntastic_javascript_checkers = ['eslint']
 "Disable easymotion default mapings
 let g:EasyMotion_do_mapping = 0 "
 " Turn on case-insensitive feature
