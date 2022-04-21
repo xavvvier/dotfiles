@@ -21,6 +21,7 @@ alias mto='mix test --only only'
 alias mps='mix phx.server'
 alias vim='nvim'
 alias e='nvim'
+alias gl='git log --oneline --graph --decorate --all'
 
 function changeMac() {
   local mac=$(openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//')
