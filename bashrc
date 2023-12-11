@@ -36,3 +36,5 @@ function changeMac() {
 
 [ -d "/usr/local/opt/asdf" ] && . /usr/local/opt/asdf/libexec/asdf.sh
 [ -d "/opt/homebrew/opt/asdf" ] && . /opt/homebrew/opt/asdf/asdf.sh
+
+export VIMINIT='let $MYVIMRC="$HOME/.vimrc" | source $MYVIMRC'
